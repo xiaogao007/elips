@@ -25,6 +25,8 @@ module.exports = {
         app.bussinessPath = path.resolve(app.baseDir, `.${sep}app`) // .${sep}app == ./app
         // 应用环境配置
         app.env = env()
+        console.log("🚀 ~ app.env:", app.env.get())
+        
         // 加载loader
         middlewareLoader(app)
         routerSchemaLoader(app)
@@ -35,9 +37,8 @@ module.exports = {
         // 注册全局中间件
         try{
             require(`${app.bussinessPath}${sep}middleware.js`)(app)
-            console.log('load global middleware done--');
         }catch(e){
-            console.log('[exception] there is no middleware file');
+            console.log('[exception] there is no global middleware file');
         }
         routerLoader(app)
         
