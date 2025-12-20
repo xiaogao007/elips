@@ -9,9 +9,11 @@
 </head>
 <body>
     <h1>PAGE1</h1>
-    <input id="env" value={{env}} />
-    <input id="options" value={{options}} />
-    <script>
+    <input id="env" value={{env}} style="display:none" />
+    <input id="options" value={{options}} style="display:none" />
+    <button onclick="handleClick()">请求</button>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script type="text/javascript">
     try{
         const env =document.getElementById('env').value
         const options= document.getElementById('options').value
@@ -19,6 +21,14 @@
         window.options=JSON.parse(options)
     }catch(e){
         console.error(e)
+    }
+    const handleClick=async ()=>{
+        try {
+            const response = await axios.get('/api/project/list');
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     }
     </script>
 </body>
