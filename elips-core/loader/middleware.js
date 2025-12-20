@@ -25,14 +25,14 @@ module.exports = (app) => {
         // 提取文件名
         let name = path.resolve(file)
         // 截取路径 app/middlewares/custom-module/custom-middleware.js  ==>  custom-module/custom-middleware.js
-        name = name.substring(name.lastIndexOf(`middlieware${sep}` + `middleware${sep}`.length, name.lastIndexOf('.')))
+        name = name.substring(name.lastIndexOf(`middlieware${sep}`) + `middleware${sep}`.length, name.lastIndexOf('.'))
         // 把 - 改为驼峰，custom-module/custom-middleware.js ==> customModule.customMiddleware
         name = name.replace(/[_-][a-z]/ig, (s) => s.substring(1).toUpperCase())
         // 挂载middlieware 到 app 中
         let tempMiddlieware = middlewares
         const names = name.split(sep)
         for (let i = 0; i < names.length; i++) {
-            if (i == names.length - 1) {
+            if (i === names.length - 1) {
                 tempMiddlieware[names[i]] = require(path.resolve(file))(app)
             } else {
                 if (!tempMiddlieware[names[i]]) tempMiddlieware[names[i]] = {}
