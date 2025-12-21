@@ -13,6 +13,7 @@
     <input id="options" value={{options}} style="display:none" />
     <button onclick="handleClick()">请求</button>
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
     <script type="text/javascript">
     try{
         const env =document.getElementById('env').value
@@ -24,8 +25,23 @@
     }
     const handleClick=async ()=>{
         try {
-            const response = await axios.get('/api/project/list');
-            console.log(response.data);
+            //const response = await axios.get('/api/project/list');
+            //const response =await axios.request({
+            //    method:'post',
+            //    url:'/api/project/list',
+            //})
+            //console.log(response.data);
+            const signKey='vhcw9548g7hw045g7hg08547y'
+            const st=Date.now()
+            axios.request({
+                method:'get',
+                url:'/api/project/list',
+                params:{proj_key:123},
+                headers:{
+                    s_t:st,
+                    s_sign:md5(`${signKey}_${st}`)
+                }
+            })
         } catch (error) {
             console.error(error);
         }

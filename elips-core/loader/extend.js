@@ -26,8 +26,10 @@ module.exports = (app) => {
         // 把 - 改为驼峰，custom-extend.js ==> customExtend
         name = name.replace(/[_-][a-z]/ig, (s) => s.substring(1).toUpperCase())
         for (const key in app) {
-            if(key === name)console.log(`[extend] load error name:${name} is already in app`);
-            return
+            if(key === name){
+                console.log(`[extend] load error name:${name} is already in app`);
+                return
+            }
         }
         //    挂载
         app[name] = require(path.resolve(file))(app)

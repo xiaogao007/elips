@@ -25,7 +25,6 @@ module.exports = {
         app.bussinessPath = path.resolve(app.baseDir, `.${sep}app`) // .${sep}app == ./app
         // 应用环境配置
         app.env = env()
-        console.log("🚀 ~ app.env:", app.env.get())
         
         // 加载loader
         middlewareLoader(app)
