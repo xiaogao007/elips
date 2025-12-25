@@ -25,14 +25,14 @@ module.exports = (app) => {
         // 提取文件名
         let name = path.resolve(file)
         // 截取路径 app/service/custom-module/custom-service.js  ==>  custom-module/custom-service.js
-        name = name.substring(name.lastIndexOf(`service${sep}` + `service${sep}`.length, name.lastIndexOf('.')))
+        name = name.substring(name.lastIndexOf(`service${sep}`) + `service${sep}`.length, name.lastIndexOf('.'))
         // 把 - 改为驼峰，custom-module/custom-service.js ==> customModule.customService
         name = name.replace(/[_-][a-z]/ig, (s) => s.substring(1).toUpperCase())
         // 挂载service 到 app 中
         let tempService = service
         const names = name.split(sep) // [ customModule (目录), customcService (文件)]
         for (let i = 0; i < names.length; i++) {
-            if (i == names.length - 1) {
+            if (i === names.length - 1) {
                 const ServiceModule=require(path.resolve(file))(app)
                 tempService[names[i]] = new ServiceModule()
             } else {

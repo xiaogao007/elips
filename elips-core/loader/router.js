@@ -15,7 +15,7 @@ module.exports = (app) => {
     // 注册所有路由
     const fileList = glob.sync(path.resolve(routerPath, `.${sep}**${sep}**.js`))
     fileList.forEach(file => {
-        require(path.resolve(file))(app.router)
+        require(path.resolve(file))(app, router)
     });
     // 路由兜底（代码健壮性）
     router.get('*', async (ctx, next) => {
@@ -23,6 +23,6 @@ module.exports = (app) => {
         ctx.redirect(`${app?.options?.homePage ?? '/'}`)
     })
     // 路由注册到app上
-    app.use(router.routes)
+    app.use(router.routes())
     app.use(router.allowedMethods())
 }

@@ -1,6 +1,8 @@
 const ElipsCore = require('./elips-core')
+
 ElipsCore.start(
     {
-        name:'GAO'
+        name:'GAO',
+        homePage:'/'
     }
 )
