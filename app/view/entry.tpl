@@ -8,7 +8,6 @@
     <title>{{name}}</title>
 </head>
 <body style="margin:0">
-    <h1>{{name}}</h1>
     <div id="root"></div>
     <input id="env" value={{env}} style="display:none" />
     <input id="options" value={{options}} style="display:none" />
