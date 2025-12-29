@@ -25,18 +25,20 @@ module.exports = (app) => {
         // 提取文件名
         let name = path.resolve(file)
         // 截取路径 app/controller/custom-module/custom-controller.js  ==>  custom-module/custom-controller.js
-        name = name.substring(name.lastIndexOf(`controller${sep}` + `controller${sep}`.length, name.lastIndexOf('.')))
+        name = name.substring(name.lastIndexOf(`controller${sep}`) + `controller${sep}`.length, name.lastIndexOf('.'))
         // 把 - 改为驼峰，custom-module/custom-controller.js ==> customModule.customController
         name = name.replace(/[_-][a-z]/ig, (s) => s.substring(1).toUpperCase())
         // 挂载controller 到 app 中
         let tempController = controller
         const names = name.split(sep) // [ customModule (目录), customcController (文件)]
-        for (let i = 0; i < names.length; i++) {
-            if (i == names.length - 1) {
-                const ControllerModule=require(path.resolve(file))(app)
+        for (let i = 0; i < names.length; ++i) {
+            if (i === names.length - 1) {
+                const ControllerModule = require(path.resolve(file))(app)
                 tempController[names[i]] = new ControllerModule()
             } else {
-                if (!tempController[names[i]]) tempController[names[i]] = {}
+                if (!tempController[names[i]]) {
+                    tempController[names[i]] = {}
+                }
                 tempController = tempController[names[i]]
             }
         }
