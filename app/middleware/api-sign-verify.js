@@ -14,7 +14,6 @@ module.exports = (app) => {
 
         const signKey = 'vhcw9548g7hw045g7hg08547y'
         const signature = md5(`${signKey}_${st}`)
-        console.log("🚀 ~ signature:", signature)
         app.logger.info(`[${method} ${path}] signature: ${signature}`)
         if (!sSign || !st || signature !== sSign.toLowerCase() || Date.now() - st > 600000) {
             ctx.status = 200

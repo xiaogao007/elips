@@ -2,6 +2,7 @@ module.exports = {
     model: 'dashboard',
     name: '抖音课程',
     desc:'抖音课程管理系统',
+    homePage: '/todo?proj_key=douyin&key=video',
     menu: [
         {
             key: 'traffic',

@@ -3,7 +3,7 @@
 <!-- eslint-disable vue/singleline-html-element-content-newline -->
 <template>
   <headerContainer title="项目列表">
-    <template #main-container>
+    <template #main-content>
       <div v-loading="loading">
         <div v-for="item in modelList" :key="item.model?.key">
           <!-- model展示区 -->
@@ -59,13 +59,14 @@ async function getModelList() {
     return;
   }
   modelList.value = res.data;
-  console.log("🚀 ~ getModelList ~ modelList.value:", modelList.value);
+  console.log("🚀 ~ getModelList ~ modelList:", modelList.value)
 }
 onMounted(() => {
   getModelList();
 });
 function onEnter(item){
-    console.log(item)
+    const {origin}=window.location
+    window.open(`${origin}/view/dashboard#${item.homePage}`)
 }
 </script>
 

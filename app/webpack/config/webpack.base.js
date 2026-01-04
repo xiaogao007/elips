@@ -145,6 +145,7 @@ module.exports = {
                     reuseExistingChunk:true, // 复用已有的公共 chunk
                 },
                 common:{
+                    test:/[\\/]common|widgets[\\/]/,// 抽离 common 和 widgets 目录下的代码
                     name:'common',
                     minChunks:2, //被引用2次视为公共模块
                     minSize:1, // 最小文件分割大小 （1byte）

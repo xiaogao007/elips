@@ -3,6 +3,6 @@ const ElipsCore = require('./elips-core')
 ElipsCore.start(
     {
         name:'GAO',
-        homePage:'/'
+        homePage:'/view/project-list'
     }
 )

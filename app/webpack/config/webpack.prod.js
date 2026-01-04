@@ -121,8 +121,8 @@ const webpackConfig = merge.smart(baseConfig, {
   },
   output: {
     filename: "js/[name]_[chunkhash:8].bundle.js",
-    path: path.join(process.cwd(), "./app/public/dist/prod"),
-    publicPath: "/dist/prod",
+    path: path.join(process.cwd(), "./app/public/dist/prod/"),
+    publicPath: "/dist/prod/",
     crossOriginLoading: "anonymous",
   },
   cache: {

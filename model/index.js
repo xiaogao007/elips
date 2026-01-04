@@ -68,6 +68,7 @@ module.exports=(app)=>{
             }
             modelItem.project[projKey]=require(path.resolve(file))
             modelItem.project[projKey].key=projKey //注入projectKey
+            modelItem.project[projKey].modelKey=modelKey //注入modelKey
         }
         if(type==='model'){
             const modelKey=file.match(/\/model\/(.*?)\/model\.js/)?.[1]

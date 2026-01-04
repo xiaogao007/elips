@@ -30,7 +30,7 @@
     </el-header>
     <el-main class="main-container">
       <!-- 核心内容填充区域 -->
-      <slot name="main-container"></slot>
+      <slot name="main-content"></slot>
     </el-main>
   </el-container>
 </template>
