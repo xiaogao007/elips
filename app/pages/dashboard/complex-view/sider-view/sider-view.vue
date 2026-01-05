@@ -82,7 +82,7 @@ watch(
     console.log("🚀 ~ menuStore.menuList:", menuStore.menuList)
     setMenuList();
     setActiveKey();
-  }
+  },{deep:true}
 );
 
 const onMenuSelect = (menuKey) => {

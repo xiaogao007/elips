@@ -79,7 +79,7 @@ module.exports = {
             menuType:'module',
             moduleType: 'iframe',
             iframeConfig: {
-                path: 'http://www.baidu.com'
+                path: 'https://www.pinduoduo.com/'
             }
         }
 
