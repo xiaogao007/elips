@@ -9,7 +9,12 @@ module.exports = {
         },
         {
             key: 'client',
-            name: '客户管理（PDD）'
+            name: '客户管理（PDD）',
+            moduleType: 'schema',
+            schemaConfig: {
+                api: '/api/pdd/client',
+                schema: {}
+            }
         },
         {
             key: 'data',
@@ -30,45 +35,46 @@ module.exports = {
                     {
                         key: 'side-search',
                         name: '信息查询',
-                        menuType:'module',
+                        menuType: 'module',
                         moduleType: 'iframe',
                         iframeConfig: {
                             path: 'http://www.baidu.com'
                         }
                     },
                     {
-                    key:'categories',
-                    name:'经营类目',
-                    menuType:'group',
-                    subMenu:[
-                        {
-                            key:'category-1',
-                            name:'分类一',
-                            menuType:'module',
-                            moduleType:'custom',
-                            customConfig:{
-                                path:'/todo'
+                        key: 'categories',
+                        name: '经营类目',
+                        menuType: 'group',
+                        subMenu: [
+                            {
+                                key: 'category-1',
+                                name: '分类一',
+                                menuType: 'module',
+                                moduleType: 'custom',
+                                customConfig: {
+                                    path: '/todo'
+                                }
+                            },
+                            {
+                                key: 'category-2',
+                                name: '分类二',
+                                menuType: 'module',
+                                moduleType: 'iframe',
+                                customConfig: {
+                                    path: 'http://www.jd.com'
+                                }
+                            }, {
+                                key: 'tag',
+                                name: '标签',
+                                menuType: 'module',
+                                moduleType: 'schema',
+                                schemaConfig: {
+                                    api: '/api/pdd/client',
+                                    schema: {}
+                                }
                             }
-                        },
-                        {
-                            key:'category-2',
-                            name:'分类二',
-                            menuType:'module',
-                            moduleType:'iframe',
-                            customConfig:{
-                                path:'http://www.jd.com'
-                            }
-                        },{
-                            key:'tag',
-                            name:'标签',
-                            menuType:'module',
-                            moduleType:'custom',
-                            customConfig:{
-                                path:'/todo'
-                            }
-                        }
-                    ]
-                }
+                        ]
+                    }
                 ]
             }
 
@@ -76,7 +82,7 @@ module.exports = {
         {
             key: 'search',
             name: '信息查询',
-            menuType:'module',
+            menuType: 'module',
             moduleType: 'iframe',
             iframeConfig: {
                 path: 'https://www.pinduoduo.com/'
