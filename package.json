@@ -5,16 +5,15 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --quiet --ext js,vue .",
-    "dev":"_ENV='local' node ./index.js",
-    "beta":"_ENV='beta' node ./index.js",
-    "prod":"_ENV='production' node ./index.js",
-
-    "dev:win":"set _ENV=local&& nodemon ./index.js",
-    "beta:win":"set _ENV=beta&& nodemon ./index.js",
-    "prod:win":"set _ENV=production&& nodemon ./index.js",
-
-    "build:dev":"set --max_old_space_size=4096&& node ./app/webpack/dev.js",
-    "build:prod":"node ./app/webpack/prod.js"
+    "test": "set _ENV=local&& mocha 'test/**/**.js'",
+    "dev": "_ENV='local' node ./index.js",
+    "beta": "_ENV='beta' node ./index.js",
+    "prod": "_ENV='production' node ./index.js",
+    "dev:win": "set _ENV=local&& nodemon ./index.js",
+    "beta:win": "set _ENV=beta&& nodemon ./index.js",
+    "prod:win": "set _ENV=production&& nodemon ./index.js",
+    "build:dev": "set --max_old_space_size=4096&& node ./app/webpack/dev.js",
+    "build:prod": "node ./app/webpack/prod.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +21,10 @@
   },
   "author": "小高",
   "license": "ISC",
-
   "dependencies": {
     "@babel/core": "^7.24.0",
+    "@babel/runtime": "^7.28.4",
+    "@element-plus/icons-vue": "^2.3.1",
     "ajv": "^6.10.2",
     "axios": "^0.19.2",
     "echarts": "^5.5.0",
@@ -51,6 +51,7 @@
     "path": "^0.12.7",
     "pinia": "^2.1.6",
     "superagent": "^8.1.2",
+    "thread-loader": "^4.0.4",
     "vue": "^3.3.4",
     "vue-json-viewer": "^3.0.4",
     "vue-router": "^4.2.4",
@@ -81,7 +82,7 @@
     "mocha": "^6.1.4",
     "style-loader": "^0.14.1",
     "supertest": "^4.0.2",
-    "terser-webpack-plugin": "^2.3.5",
+    "terser-webpack-plugin": "^5.3.16",
     "url-loader": "^4.1.1",
     "validate-commit-msg": "~2.14.0",
     "vue-loader": "^17.2.2",
@@ -89,13 +90,12 @@
     "webpack": "^5.88.1",
     "webpack-dev-middleware": "^6.1.1",
     "webpack-hot-middleware": "^2.25.4",
-    "webpack-merge": "^4.2.1" 
+    "webpack-merge": "^4.2.1"
   },
-  "config":{
-    "ghooks":{
-      "commit-msg":"validate-commit-msg",
-      "pre-commit":"npm run lint"
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": "npm run lint"
     }
   }
-
 }

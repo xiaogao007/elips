@@ -1,2 +1,9 @@
-/public
-/node_modules
+# 构建产物目录
+app/public/dist/**
+app/public/**/*.bundle.js
+
+# 依赖目录
+node_modules/
+
+# 文档目录
+docs/

@@ -2,3 +2,5 @@ package-lock.json
 node_modules
 config.local.js
 app/public/dist
+elips-core/elips-core-analysis.md
+app/webpack/webpack-analysis.md
