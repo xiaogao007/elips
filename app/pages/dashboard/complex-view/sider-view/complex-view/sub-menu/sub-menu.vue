@@ -8,10 +8,8 @@
     </div>
   </el-sub-menu>
 </template>
-
 <script setup>
 const { menuItem } = defineProps(["menuItem"]);
+console.log("🚀 ~ menuItem:", menuItem)
 </script>
-
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

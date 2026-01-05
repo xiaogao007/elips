@@ -1,5 +1,5 @@
 <template>
-  <headerContainer :title="projName">
+  <header-container :title="projName">
     <template #menu-content>
       <!-- 根据store.menlist渲染 -->
       <el-menu
@@ -9,10 +9,10 @@
         @select="onMenuSelec"
       >
         <template v-for="item in menuStore.menuList">
-          <SubMenu
+          <sub-menu
             v-if="item.subMenu && item.subMenu.length > 0"
-            :menuItem="item"
-          ></SubMenu>
+            :menu-item="item"
+          ></sub-menu>
           <el-menu-item v-else :index="item.key">{{ item.name }}</el-menu-item>
         </template>
       </el-menu>
@@ -46,13 +46,13 @@
     <template #main-content>
       <slot name="main-content"></slot>
     </template>
-  </headerContainer>
+  </header-container>
 </template>
 
 <script setup>
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import headerContainer from "$widgets/header-container/header-container.vue";
+import HeaderContainer from "$widgets/header-container/header-container.vue";
 import SubMenu from "./complex-view/sub-menu/sub-menu.vue";
 import { ArrowDown } from "@element-plus/icons-vue";
 
@@ -66,41 +66,52 @@ defineProps({
   projName: String,
 });
 
-const emit=defineEmits('menu-select')
-const route=useRoute()
+const emit = defineEmits(['menu-select']);
+const route = useRoute();
 const activeKey = ref("");
-watch(()=>route.query.key,()=>{
-  console.log(11111111111)
-  setActiveKey()
-})
-watch(()=>menuStore.menuList,()=>{
-  setActiveKey()
-})
-onMounted(()=>{
-  setActiveKey()
-})
-const setActiveKey=()=>{
-  const menuItem=menuStore.findMenuItem({
-    key:'key',
-    value:route.query.key
-  })
-  activeKey.value=menuItem?.key
-}
+const setActiveKey = () => {
+  const menuItem = menuStore.findMenuItem({
+    key: "key",
+    value: route.query.key,
+  });
+  activeKey.value = menuItem?.key;
+};
+
+
+watch(
+  () => route.query.key,
+  () => {
+    setActiveKey();
+  }
+);
+watch(
+  () => menuStore.menuList,
+  () => {
+    setActiveKey();
+  }
+);
+onMounted(() => {
+  setActiveKey();
+});
 
 const onMenuSelec = (mneuKey) => {
-  const menuItem=menuStore.findMenuItem({
-    key:'key',
-    value:mneuKey
-  })
-  emit('menu-select',menuItem)
+  const menuItem = menuStore.findMenuItem({
+    key: "key",
+    value: mneuKey,
+  });
+  emit("menu-select", menuItem);
 };
-const handleProjectCommand=(event)=>{
-  const projectItem=projectStore.projectList.find(item=>item.key===event)
-  if(!projectItem ||!projectItem.homePage){return}
-  const{origin,pathname}=window.location
-  window.location.replace(`${origin}${pathname}#${projectItem.homePage}`)
-  window.location.reload()
-}
+const handleProjectCommand = (event) => {
+  const projectItem = projectStore.projectList.find(
+    (item) => item.key === event
+  );
+  if (!projectItem || !projectItem.homePage) {
+    return;
+  }
+  const { origin, pathname } = window.location;
+  window.location.replace(`${origin}${pathname}#${projectItem.homePage}`);
+  window.location.reload();
+};
 </script>
 
 <style lang="less" scoped>

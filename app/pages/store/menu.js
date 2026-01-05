@@ -33,9 +33,22 @@ export const useMenuStore=defineStore('menu',()=>{
             }
         }
     }
+    /**
+     * 查找第一个菜单项
+     * params mList 要搜索的菜单列表
+     */
+    const findFirstMenuItem=(mList=menuList.value)=>{
+        if(!mList||mList.length===0){return }
+        let firstMneuItem=mList[0]
+        if(firstMneuItem.subMenu){
+            firstMneuItem=findFirstMenuItem(firstMneuItem.subMenu)
+        }
+        return firstMneuItem
+    }
     return{
         menuList,
         setMenuList,
-        findMenuItem
+        findMenuItem,
+        findFirstMenuItem
     }
 })

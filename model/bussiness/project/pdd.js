@@ -35,7 +35,40 @@ module.exports = {
                         iframeConfig: {
                             path: 'http://www.baidu.com'
                         }
-                    }
+                    },
+                    {
+                    key:'categories',
+                    name:'经营类目',
+                    menuType:'group',
+                    subMenu:[
+                        {
+                            key:'category-1',
+                            name:'分类一',
+                            menuType:'module',
+                            moduleType:'custom',
+                            customConfig:{
+                                path:'/todo'
+                            }
+                        },
+                        {
+                            key:'category-2',
+                            name:'分类二',
+                            menuType:'module',
+                            moduleType:'iframe',
+                            customConfig:{
+                                path:'http://www.jd.com'
+                            }
+                        },{
+                            key:'tag',
+                            name:'标签',
+                            menuType:'module',
+                            moduleType:'custom',
+                            customConfig:{
+                                path:'/todo'
+                            }
+                        }
+                    ]
+                }
                 ]
             }
 
