@@ -36,7 +36,7 @@ module.exports = {
                 },
                 // 当menuType为schema
                 schemaConfig: {
-                    api:'/api/user',//数据源api(遵循 RESTFUL 规则)
+                    api:'',//数据源api(遵循 RESTFUL 规则)
                     schema:{//模块数据结构
                         type:'object',
                         properties:{
@@ -44,11 +44,41 @@ module.exports = {
                                 ...schema,//标准 schema 配置
                                 type:'',//字段类型
                                 label:'',//字段中文名
+                                // 字段在table中的配置
+                                tableOptions:{
+                                    ...tlTableClomnOptions,//标准 table 列配置
+                                    visible:true,//是否在table中显示
+                                },
+                                ...
                             },
                         }
                     }
                 },
-                tableConfig:{},//table 相关配置
+                tableConfig:{
+                    headerButtons:[
+                        {
+                            label:'',//按钮名称
+                            eventKey:'',//按钮事件标识
+                            eventOption:{},//按钮配置
+                            ...elButtonConfig//标准 el-button 配置
+                        },
+                    ],//table头部按钮
+                    rowButtons:[
+                        {
+                            label:'',//按钮名称
+                            eventKey:'',//按钮事件标识
+                            eventOption:{
+                                // 当key====remove
+                                params:{
+                                    // paramKey = 参数的键值
+                                    // rowValueKey = 参数值
+                                    paramKey:rowValueKey
+                                }
+                            },//按钮配置
+                            ...elButtonConfig//标准 el-button 配置
+                        },
+                    ],//table行按钮
+                },//table 相关配置
                 searchConfig:{},//search-bar相关配置
                 components:{}//模块组件
             },

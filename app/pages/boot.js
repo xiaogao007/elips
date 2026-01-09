@@ -8,7 +8,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import './assets/custom.css'
 
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 /**
  * vue 页面主入口，用于启动vue
@@ -31,7 +31,7 @@ export default (pageComponent, { routes, libs={} } = {}) => {
     // 引入router
     if (routes && routes.length) {
         const router = createRouter({
-            history: createWebHashHistory(),
+            history: createWebHistory(),
             routes
         })
         app.use(router)

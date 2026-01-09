@@ -9,16 +9,16 @@
 </head>
 <body style="margin:0">
     <div id="root"></div>
-    <input id="env" value={{env}} style="display:none" />
-    <input id="options" value={{options}} style="display:none" />
+    <input id="projKey" value="{{projKey}}" style="display:none" />
+    <input id="env" value="{{env}}" style="display:none" />
+    <input id="options" value="{{options}}" style="display:none" />
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
     <script type="text/javascript">
     try{
-        const env =document.getElementById('env').value
-        const options= document.getElementById('options').value
-        window.env=env
-        window.options=JSON.parse(options)
+        window.projKey =document.getElementById('projKey').value
+        window.env =document.getElementById('env').value
+        window.options= document.getElementById('options').value
     }catch(e){
         console.error(e)
     }
