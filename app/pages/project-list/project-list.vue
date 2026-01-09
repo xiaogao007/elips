@@ -59,14 +59,13 @@ async function getModelList() {
     return;
   }
   modelList.value = res.data;
-  console.log("🚀 ~ getModelList ~ modelList:", modelList.value)
 }
 onMounted(() => {
   getModelList();
 });
 function onEnter(item){
     const {origin}=window.location
-    window.open(`${origin}/view/dashboard#${item.homePage}`)
+    window.open(`${origin}/view/dashboard${item.homePage}`)
 }
 </script>
 

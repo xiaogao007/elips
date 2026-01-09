@@ -1,7 +1,7 @@
 module.exports={
     name:'淘宝',
     desc:'淘宝电商',
-    homePage:'/todo?proj_key=taobao&key=product',
+    homePage:'/schema?proj_key=taobao&key=product',
     menu:[
         {
             key:'order',

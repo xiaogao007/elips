@@ -1,7 +1,7 @@
 module.exports = {
     name: '京东',
     desc: '京东电商',
-    homePage: '/todo?proj_key=jd&key=product',
+    homePage: '/schema?proj_key=jd&key=product',
     menu: [
         {
             key: 'shop-setting',
