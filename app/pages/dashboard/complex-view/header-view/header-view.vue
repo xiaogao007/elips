@@ -108,9 +108,8 @@ const handleProjectCommand = (event) => {
   if (!projectItem || !projectItem.homePage) {
     return;
   }
-  const { origin, pathname } = window.location;
-  window.location.replace(`${origin}${pathname}#${projectItem.homePage}`);
-  window.location.reload();
+  const { host } = window.location;
+  window.location.replace(`http://${host}/view/dashboard${projectItem.homePage}`);
 };
 </script>
 

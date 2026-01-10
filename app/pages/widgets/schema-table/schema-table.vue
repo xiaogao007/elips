@@ -89,6 +89,13 @@ const props = defineProps({
     default: "",
   },
   /**
+   * apiParams
+   */
+  apiParams: {
+    type: Object,
+    default: () => {},
+  },
+  /**
    * 操作按钮
    *  {
    *      label:'',//按钮名称
@@ -103,7 +110,7 @@ const props = defineProps({
     default: () => [],
   },
 });
-const { schema, api, buttons } = toRefs(props);
+const { schema, api, apiParams, buttons } = toRefs(props);
 
 const loading = ref(false);
 const tableData = ref([]);
@@ -126,7 +133,7 @@ onMounted(() => {
 });
 
 watch(
-  [schema, api],
+  [schema, api, apiParams],
   () => {
     initData();
   },
@@ -170,6 +177,7 @@ const fetchTableData = async () => {
     query: {
       page: currentPage.value,
       size: pageSize.value,
+      ...apiParams.value, // 合并搜索参数
     },
   });
 
