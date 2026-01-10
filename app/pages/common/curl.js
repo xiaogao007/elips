@@ -22,7 +22,7 @@ const curl = ({
     s_t: st,
     s_sign: md5(`${signKey}_${st}`),
   };
-  if (url.indexOf("/api/proj") > -1 && window.projKey) {
+  if (url.indexOf("/api/proj/") > -1 && window.projKey) {
     dtoHeaders.proj_key = window.projKey;
   }
 
@@ -46,7 +46,6 @@ const curl = ({
       const { success, message, code } = resData;
       // 失败
       if (!success) {
-        console.log("🚀 ~ curl ~ code:", code);
         if (code === 442) {
           ElMessage.error("请求参数异常");
         } else if (code === 445) {

@@ -10,14 +10,16 @@
         v-for="(item, i) in tableConfig?.headerButtons"
         :key="i"
         v-bind="item"
-        @click="operationHandler({btnConfig:item})"
-      >{{ item.label }}</el-button>
+        @click="operationHandler({ btnConfig: item })"
+        >{{ item.label }}</el-button
+      >
     </el-row>
     <!-- schema-table(组件 widget) -->
     <schema-table
       ref="schemaTableRef"
       :schema="tableSchema"
       :api="api"
+      :api-params="apiParams"
       :buttons="tableConfig?.rowButtons ?? []"
       @operate="operationHandler"
     ></schema-table>
@@ -30,10 +32,9 @@ import $curl from "$common/curl";
 import SchemaTable from "$widgets/schema-table/schema-table.vue";
 
 const emit = defineEmits(["operate"]);
-const { api, tableSchema, tableConfig } = inject("schemaViewData");
+const { api, tableSchema, tableConfig, apiParams } = inject("schemaViewData");
 
 const schemaTableRef = ref(null);
-
 
 const removeData = ({ btnConfig, rowData }) => {
   const { eventOption } = btnConfig;
@@ -99,12 +100,12 @@ defineExpose({
 </script>
 <style lang="less" scoped>
 .table-panel {
- flex: 1;
-  .operation-panel{
+  flex: 1;
+  .operation-panel {
     margin-bottom: 10px;
   }
 }
-:deep(.el-card__body){
+:deep(.el-card__body) {
   height: 98%;
   display: flex;
   flex-direction: column;
