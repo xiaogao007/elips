@@ -41,6 +41,10 @@ module.exports = (app) => {
         getProductEnumList(ctx) {
             this.success(ctx, [
                 {
+                    label: '全部',
+                    value: ''
+                },
+                {
                     label: '前端',
                     value: '前端'
                 },

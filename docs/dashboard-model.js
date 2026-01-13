@@ -72,7 +72,8 @@ module.exports = {
                             ...
                         },
                     }
-                }
+                },
+                required: [],//标记哪些字段必填
             },
             tableConfig: {
                 headerButtons: [
