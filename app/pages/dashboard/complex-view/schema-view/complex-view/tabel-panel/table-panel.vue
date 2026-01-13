@@ -86,6 +86,7 @@ const loadTableData = async () => {
   await schemaTableRef.value.loadTableData();
 };
 const operationHandler = ({ btnConfig, rowData }) => {
+  console.log("🚀 ~ operationHandler ~ rowData:", rowData);
   const { eventKey } = btnConfig;
   if (EventHanlerMap[eventKey]) {
     EventHanlerMap[eventKey]({ btnConfig, rowData });

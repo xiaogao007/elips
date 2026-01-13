@@ -59,17 +59,32 @@ module.exports = {
                                 // comType === dynamicSelect
                                 api: ''
                             },
+                            createFromOption: {
+                                ...eleComponentConfig,//标准的el-component配置
+                                comType: '',//控件类型 input/select...
+                                visible: true,//是否展示
+                                disabled: false,//是否禁用
+                                default: '',//默认值
+
+                                // comType === select
+                                enumList: []
+                            },
                             ...
                         },
                     }
-                }
+                },
+                required: [],//标记哪些字段必填
             },
             tableConfig: {
                 headerButtons: [
                     {
                         label: '',//按钮名称
                         eventKey: '',//按钮事件标识
-                        eventOption: {},//按钮配置
+                        //按钮配置
+                        eventOption: {
+                            // 当eventKey === showComponent
+                            comName: '',//组件名
+                        },
                         ...elButtonConfig//标准 el-button 配置
                     },
                 ],//table头部按钮
@@ -78,19 +93,30 @@ module.exports = {
                         label: '',//按钮名称
                         eventKey: '',//按钮事件标识
                         eventOption: {
+                            // 当eventKey === showComponent
+                            comName: '',//组件名
                             // 当key====remove
                             params: {
                                 // paramKey = 参数的键值
                                 // rowValueKey = 参数值
                                 paramKey: rowValueKey
-                            }
+                            },
                         },//按钮配置
                         ...elButtonConfig//标准 el-button 配置
                     },
                 ],//table行按钮
             },//table 相关配置
-            searchConfig: {},//search-bar相关配置
-            components: {}//模块组件
+            //search-bar相关配置
+            searchConfig: {},
+            //动态组件 配置
+            componentConfig: {
+                // create-form 表单相关配置
+                createForm: {
+                    title: '',//表单标题
+                    saveBtnText: '',//保存按钮文字
+                }
+                // ...支持用户动态扩展
+            }
         },
     ]
 }  

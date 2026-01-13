@@ -11,7 +11,7 @@
     >
       <component
         :is="SearchItemConfig[schemaItem.option?.comType]?.component"
-        :ref="handleSearchComList"
+        :ref="searchComList"
         :schema-key="key"
         :schema="schemaItem"
         @loaded="handleChildLoaded"
@@ -57,12 +57,7 @@ const props = defineProps({
 
 const { schema } = toRefs(props);
 const searchComList = ref([]);
-const handleSearchComList = (el) => {
-  // 过滤空值，并防止重复添加
-  if (el && !searchComList.value.includes(el)) {
-    searchComList.value.push(el);
-  }
-};
+
 const emit = defineEmits(["load", "search", "reset"]);
 const getValue = () => {
   const dtoObj = {};

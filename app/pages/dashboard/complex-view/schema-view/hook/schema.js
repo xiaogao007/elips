@@ -11,6 +11,9 @@ export const useSchema = () => {
   const searchConfig = ref({});
   const tableSchema = ref({});
   const tableConfig = ref({});
+
+  const components = ref({});
+
   // 构造schema相关配置，共schemaview解释器使用
   const buildData = () => {
     const { key, sider_key: siderKey } = route.query;
@@ -36,8 +39,21 @@ export const useSchema = () => {
           if (route.query[key] !== undefined) {
             dtoSearchSchema.properties[key].option.default = route.query[key];
           }
-          searchSchema.value = dtoSearchSchema;
-          searchConfig.value = sConfig.searchConfig;
+        }
+        searchSchema.value = dtoSearchSchema;
+        searchConfig.value = sConfig.searchConfig;
+
+        // 构造components={comKey:{schema,config}}
+        const { componentConfig } = sConfig;
+        if (componentConfig && Object.keys(componentConfig).length > 0) {
+          const dtoComponents = {};
+          for (const comName in componentConfig) {
+            dtoComponents[comName] = {
+              schema: buildDtoSchema(configSchema, comName),
+              config: componentConfig[comName],
+            };
+          }
+          components.value = dtoComponents;
         }
       });
     }
@@ -61,6 +77,14 @@ export const useSchema = () => {
         dtoProps = Object.assign({}, dtoProps, {
           option: props[`${comName}Option`] || {},
         });
+        dtoSchema.properties[key] = dtoProps;
+        // 处理required字段
+        const { required } = _schema;
+        if (required && required.find((pk) => pk === key)) {
+          if (dtoProps.option) {
+            dtoProps.option.required = true;
+          }
+        }
         dtoSchema.properties[key] = dtoProps;
       }
     }
@@ -89,5 +113,6 @@ export const useSchema = () => {
     tableConfig,
     searchSchema,
     searchConfig,
+    components,
   };
 };

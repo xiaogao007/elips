@@ -28,8 +28,8 @@ module.exports = {
               },
               searchOption: {
                 // comType: "input",
-                comType: 'dynamicSelect',
-                api: '/api/proj/product_enum/list'
+                comType: "dynamicSelect",
+                api: "/api/proj/product_enum/list",
               },
             },
             price: {
@@ -46,16 +46,16 @@ module.exports = {
                     value: -999,
                   },
                   {
-                    label: "$99",
-                    value: 99,
+                    label: "$99.99",
+                    value: 99.99,
                   },
                   {
-                    label: "$199",
-                    value: 199,
+                    label: "$299.99",
+                    value: 299.99,
                   },
                   {
-                    label: "$399",
-                    value: 399,
+                    label: "$999.99",
+                    value: 999.99,
                   },
                 ],
               },
@@ -72,10 +72,15 @@ module.exports = {
               label: "创建时间",
               tableOption: {},
               searchOption: {
-                comType: 'dateRange',
-
-              }
+                comType: "dateRange",
+              },
             },
+          },
+        },
+        componentConfig: {
+          createForm: {
+            title: "新增商品",
+            saveBtnText: "新增商品",
           },
         },
       },
@@ -84,6 +89,9 @@ module.exports = {
           {
             label: "新增商品",
             eventKey: "showComponent",
+            eventOption: {
+              comName: "createForm",
+            },
             type: "primary",
             plain: true,
           },
